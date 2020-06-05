@@ -2,19 +2,61 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import Constants from 'expo-constants'
 import { Feather as Icon, FontAwesome } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
+import api from '../../services/api';
+import * as MailComposer from 'expo-mail-composer';
+import { Linking } from 'expo';
 
+interface Params {
+  point_id: number;
+}
 
-
+interface Data {
+  point: {
+    image: string;
+    name: string;
+    email: string;
+    whatsapp: string;
+    city: string;
+    uf: string;
+  };
+  items: {
+    title: string;
+  }[];
+}
 
 const Detail = () => {
 
     const navigation = useNavigation();
+    const route = useRoute();
+    const [data, setData] = useState<Data>({} as Data);
+
+    const routeParams = route.params as Params;
+
+    useEffect(() => {
+      api.get(`points/${routeParams.point_id}`).then(response => {
+        setData(response.data);
+      });
+    },  []);
     
     function handleNavigateBack(){
         navigation.goBack();
-    }
+    };
+
+    function handleComposeMail(){
+      MailComposer.composeAsync({
+        subject: 'Interesse na coleta de residuos',
+        recipients: [data.point.email],
+      });
+    };
+
+    function handleWhatsapp(){
+      Linking.openURL(`whatsapp://send?phone=${data.point.whatsapp}&text=Tenho interesse na coleta de residuos`);
+    };
+
+    if(!data.point)
+      return null;
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -22,28 +64,27 @@ const Detail = () => {
                 <TouchableOpacity onPress={handleNavigateBack}>
                     <Icon name="arrow-left" size={20} color="#34cb79"/>
                 </TouchableOpacity>
-
                 <Image 
                     style={styles.pointImage}
-                    source={{uri: 'https://previews.123rf.com/images/prettyvectors/prettyvectors1604/prettyvectors160400115/54960959-food-vegetables-market-vector-flat-cartoon-illustration.jpg'}} />
-                <Text style={styles.pointName}>Mercado do Vila</Text>
-                <Text style={styles.pointItems}>Lampadas, Olde de Cozinha</Text>
+                    source={{uri: data.point.image }} />
+                <Text style={styles.pointName}>{data.point.name}</Text>
+                <Text style={styles.pointItems}>{data.items.map(item => item.title).join(', ')}</Text>
                 <View style={styles.address}>
                     <Text style={styles.addressTitle}>Endereço</Text>
-                    <Text style={styles.addressContent}>Rio de Janeiro, RJ</Text>
+                    <Text style={styles.addressContent}>{data.point.city}, {data.point.uf}</Text>
                 </View>
             </View>
             <View style={styles.footer}>
                 <RectButton 
                     style={styles.button}
-                    onPress={() => {}}>
+                    onPress={() => handleWhatsapp}>
                     <FontAwesome name="whatsapp" size={20} color="#FFF"></FontAwesome>
                     <Text style={styles.buttonText}>Whatsapp</Text>
                 </RectButton>
 
                 <RectButton 
                     style={styles.button}
-                    onPress={() => {}}>
+                    onPress={() => handleComposeMail}>
                     <Icon name="mail" size={20} color="#FFF"></Icon>
                     <Text style={styles.buttonText}>E-mail</Text>
                 </RectButton>
