@@ -1,4 +1,4 @@
-# NLW - NLW#1 Booster
+# NLW#1 Booster
 
 ## 1. Objetivo
 Projeto para cadastro de pontos de coleta de resíduos
@@ -28,7 +28,7 @@ Instalar o NodeJs
 - [Google Fonts](https://fonts.google.com/)
 
 
-# NLW - NLW#1 Booster
+# NLW#1 Booster
 
 ## 1. Purpose
 Project for registration of waste collection points
