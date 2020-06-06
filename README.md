@@ -59,7 +59,8 @@ npm run dev
 
 - **frontend e mobile:**
 ```bash
-npm st
+npm start
+```
 
 ## 5. Technologies
 - [NodeJs](https://github.com/nodejs/node)
