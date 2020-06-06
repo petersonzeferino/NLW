@@ -7,11 +7,21 @@ Projeto para cadastro de pontos de coleta de resíduos
 Construção de aplicativos web e mobile, utilizando Typescript com base em NodeJs, React e React Native
 
 ## 3. Pré Requisitos
-Instalar o NodeJs
+Instalar o NodeJs e as dependencias
+```bash
+npm install
+```
 
 ## 4. Execução
-- backend: **npm run dev** 
-- frontend e mobile: **npm start**
+- **backend** 
+```bash
+npm run dev
+```
+
+- **frontend e mobile:**
+```bash
+npm start
+```
 
 ## 5. Tecnologias
 - [NodeJs](https://github.com/nodejs/node)
@@ -35,12 +45,21 @@ Project for registration of waste collection points
 ## 2. The solution
 Building web and mobile applications using Typescript based on NodeJs, React and React Native
 
-## 3. Prerequisites
-Install NodeJs
+## 3. Pré Requisitos
+Instalar o NodeJs and the dependencies
+```bash
+npm install
+```
 
-## 4. Execution
-- backend: **npm run dev** 
-- frontend e mobile: **npm start**
+## 4. Execução
+- **backend** 
+```bash
+npm run dev
+```
+
+- **frontend e mobile:**
+```bash
+npm st
 
 ## 5. Technologies
 - [NodeJs](https://github.com/nodejs/node)
