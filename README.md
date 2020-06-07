@@ -45,8 +45,8 @@ Project for registration of waste collection points
 ## 2. The solution
 Building web and mobile applications using Typescript based on NodeJs, React and React Native
 
-## 3. Pré Requisitos
-Instalar o NodeJs and the dependencies
+## 3. Prerequisites
+Install NodeJs and the dependencies
 ```bash
 npm install
 ```
