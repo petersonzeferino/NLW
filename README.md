@@ -74,3 +74,5 @@ npm start
 - [Axios](https://github.com/axios/axios)
 - [Leaflet](https://github.com/Leaflet/Leaflet)
 - [Google Fonts](https://fonts.google.com/)
+
+[![HitCount](http://hits.dwyl.com/petersonzeferino/NLW.svg)](http://hits.dwyl.com/petersonzeferino/NLW)
